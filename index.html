@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contractor Website</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    :root {
+      --bg-color: #fff8f0;
+      --primary-color: #a0522d;
+      --secondary-color: #fff5eb;
+      --accent-color: #5c2e0d;
+      --text-color: #3b2f2f;
+      --font-family: 'Inter', sans-serif;
+
+      /* Major Third Type Scale */
+      --font-xs: 0.64rem;
+      --font-sm: 0.8rem;
+      --font-base: 1rem;
+      --font-md: 1.25rem;
+      --font-lg: 1.563rem;
+      --font-xl: 1.953rem;
+      --font-xxl: 2.441rem;
+      --font-xxxl: 3.052rem;
+      --font-display: 3.815rem;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+
+.header-container {
+  background: var(--secondary-color);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-inner {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+.logo-block {
+  background: var(--secondary-color);
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 220px;
+  border-right: 1px solid rgba(0,0,0,0.05);
+}
+
+.logo {
+  font-size: var(--font-xxl);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.right-block {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0.5rem 2rem;
+  font-size: var(--font-sm);
+  gap: 2rem;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, opacity 0.3s ease, height 0.3s ease, margin 0.3s ease, padding 0.3s ease;
+  transform: translateY(0);
+  opacity: 1;
+  height: auto;
+  overflow: hidden;
+}
+
+.top-bar.hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  height: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.top-bar i {
+  margin-right: 0.35rem;
+  color: var(--accent-color);
+}
+
+
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+.main-nav nav ul {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.main-nav nav a {
+  text-decoration: none;
+  color: var(--accent-color);
+  font-weight: 600;
+  font-size: var(--font-md);
+}
+
+.nav-cta {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  font-weight: bold;
+  font-size: var(--font-sm);
+  cursor: pointer;
+}
+
+
+
+    .hero {
+      display: flex;
+      height: calc(100vh - 105px);
+    }
+
+    .hero-left,
+    .hero-right {
+    flex-basis: 50%;
+    max-width: 50%;
+    }
+
+    .hero-left {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: .5rem;
+      padding: 5rem;
+    }
+
+    .hero-right {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left .subtitle {
+      text-transform: uppercase;
+      font-size: var(--font-sm);
+      letter-spacing: 0.05em;
+      color: var(--accent-color);
+      font-weight: 600;
+      letter-spacing: 2px;
+    }
+
+    .hero-left h1 {
+      font-size: var(--font-display);
+      font-weight: 700;
+    }
+
+    .hero-left p {
+      font-size: var(--font-lg);
+      color: var(--accent-color);
+    }
+
+    .hero-buttons {
+      display: flex;
+      width: 100%;
+      gap: 50px;
+      margin-top: 20px;
+    }
+
+.btn {
+  flex: 1;
+  padding: 1rem 0;
+  font-size: var(--font-md);
+  border: 2px solid;
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s ease, border-color 0.3s ease;
+  z-index: 1;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  z-index: -1;
+  transition: height 0.4s ease;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.btn-primary::before {
+  background-color: white;
+}
+
+.btn-primary:hover {
+  color: var(--primary-color);
+}
+
+.btn-primary:hover::before {
+  height: 100%;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+.btn-secondary::before {
+  background-color: var(--accent-color);
+}
+
+.btn-secondary:hover {
+  color: white;
+}
+
+.btn-secondary:hover::before {
+  height: 100%;
+}
+
+
+
+    .swiper {
+      width: 100%;
+      height: 100%;
+    }
+
+    .swiper-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .swiper-pagination {
+      position: absolute;
+      bottom: 1rem !important;
+      left: 1rem !important;
+      display: flex;
+      flex-direction: row;
+      gap: 0.25rem;
+      z-index: 10;
+    }
+
+    .swiper-pagination-bullet {
+      background: rgba(255, 255, 255, 0.9);
+      opacity: 1;
+      width: 12px;
+      height: 12px;
+      border-radius: 2px;
+    }
+
+    .swiper-navigation-container {
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 2px;
+      display: flex;
+      gap: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      z-index: 10;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+      position: static;
+      margin: 0;
+      color: var(--accent-color);
+    }
+
+    .swiper-button-next::after,
+    .swiper-button-prev::after {
+      font-size: 1rem;
+    }
+
+    @media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+    }
+
+    .hero-left,
+    .hero-right {
+        max-width: 100%;
+        flex-basis: auto;
+        width: 100%;
+        padding: 2rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .btn {
+        width: 100%;
+    }
+    }
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--accent-color);
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .main-nav nav ul {
+    position: static;
+    top: auto;
+    right: auto;
+    background: var(--secondary-color);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem 2rem;
+    display: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 100%;
+  }
+
+  .main-nav nav ul.show {
+    display: flex;
+  }
+
+  .nav-cta {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
+
+.mobile-contact {
+  display: none;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem 2rem 0;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  font-size: var(--font-sm);
+  background: var(--secondary-color);
+}
+
+@media (max-width: 768px) {
+  .mobile-contact {
+    display: none;
+  }
+
+  .top-bar {
+    display: none;
+  }
+
+  .nav-wrapper {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100%;
+    background: var(--secondary-color);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem 2rem;
+    display: none;
+  }
+
+  .nav-wrapper.show {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    }
+  .nav-wrapper.show .mobile-contact {
+    display: flex;
+    padding: 0;
+  }
+
+  .nav-wrapper ul {
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+  }
+
+  .nav-cta {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
+
+
+/* Services */
+
+.services {
+  padding: 8rem 2rem;
+  background: var(--bg-color);
+  text-align: center;
+}
+
+.services-header .subtitle {
+  font-size: var(--font-sm);
+  color: var(--accent-color);
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  letter-spacing: 2px;
+}
+
+.services-header h2 {
+  font-size: var(--font-xl);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.services-header p {
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  color: var(--text-color);
+  font-size: var(--font-base);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin: 80px 0;
+}
+
+.service-card {
+  background: var(--secondary-color);
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  text-align: left;
+  color: var(--text-color);
+  transition: color 0.3s ease;
+  z-index: 1;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.16);
+}
+
+.service-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--bg-image);
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: scale(1.05);
+  transition: transform 0.5s ease, opacity 0.4s ease;
+  z-index: -1;
+}
+
+.service-card:hover::before {
+  opacity: 0.2;
+  transform: scale(1.1);
+}
+
+.service-card:hover {
+  background: var(--primary-color);
+  color: white;
+}
+
+.service-card i {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--accent-color);
+  transition: color 0.3s ease;
+}
+
+.service-card:hover i {
+  color: white;
+}
+
+.service-card h3 {
+  font-size: var(--font-lg);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.service-card p {
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+/* CTA under services */
+.services-cta {
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.services-cta .btn {
+  padding: 0.85rem 1rem;
+  font-size: var(--font-md);
+  border-radius: 0;
+  max-width: 220px;
+}
+
+@media (max-width: 768px) {
+  .services-cta {
+    margin-top: 1.25rem;
+    padding: 0 1rem;
+  }
+  .services-cta .btn {
+    flex: 1;
+    width: 100%;
+    max-width: none;
+  }
+}
+
+/* About Section */
+.about-section {
+  background-image:linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('./images/background-cabin.png'); /* Replace with your image */
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  color: white;
+  padding: 6rem 2rem;
+  text-align: center;
+}
+
+.about-overlay {
+  padding: 4rem 2rem;
+}
+
+.about-content h2 {
+  font-size: var(--font-xxl);
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.about-content p {
+  font-size: var(--font-md);
+  max-width: 800px;
+  margin: 0 auto 3rem auto;
+  color: #f1f1f1;
+}
+
+.about-features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.feature-box {
+  padding: 2rem 1rem;
+  border-radius: 0.5rem;
+  width: 200px;
+  flex: 1 1 200px;
+  color: white;
+}
+
+.feature-box i {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+    color: var(--primary-color);
+    background: white;
+    padding: 20px;
+    border-radius: 2px;
+}
+
+.feature-box h4 {
+  font-size: var(--font-md);
+  margin-bottom: 0.5rem;
+}
+
+.feature-box p {
+  font-size: 1rem;
+  color: #eaeaea;
+}
+
+.projects-section {
+  padding: 4rem 2rem;
+  text-align: center;
+  background-color: var(--bg-color);
+}
+
+.project-swiper {
+  width: 100%;
+  padding: 2rem 0;
+  position: relative;
+  z-index: 220; /* bring project swiper forward */
+}
+
+.project-swiper .swiper-wrapper {
+  align-items: center;
+}
+
+.project-swiper .swiper-slide {
+  max-width: 800px;
+  height: 500px;
+  margin: 0 auto;
+  transition: transform 0.45s cubic-bezier(.2,.9,.2,1), box-shadow 0.45s ease, opacity 0.45s ease;
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+  transform-origin: center center;
+  transform: scale(0.82); /* smaller by default */
+  opacity: 0.85;
+}
+
+/* Active slide grows to full size */
+.project-swiper .swiper-slide.swiper-slide-active {
+  transform: scale(1);
+  z-index: 220;
+  opacity: 1;
+}
+    .project-swiper-navigation-container {
+      margin: 20px auto;
+      width: fit-content;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 2px;
+      display: flex;
+      gap: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      z-index: 10;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+/* Make neighboring slides slightly more prominent than distant ones */
+.project-swiper .swiper-slide.swiper-slide-next,
+.project-swiper .swiper-slide.swiper-slide-prev {
+  transform: scale(0.9);
+  opacity: 0.92;
+  z-index: 110;
+  cursor: pointer;
+}
+
+.project-swiper .swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+
+.project-swiper .swiper-slide:hover img {
+  transform: scale(1.03);
+}
+
+/* Slide caption overlay: subtle black gradient and text at the bottom */
+.project-swiper .slide-overlay {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: flex-end;
+      color: #ffffff;
+      z-index: 240; /* sit above the image and active slide z-index */
+      background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.25) 40%, rgba(0,0,0,0.6) 100%);
+      pointer-events: none; /* let clicks pass through to the slide unless specific elements need interaction */
+    }
+
+    .project-swiper .slide-meta {
+      pointer-events: auto;
+      text-align: left;
+    }
+
+    .project-swiper .project-type {
+      display: block;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      opacity: 0.95;
+      color: rgba(255,255,255,0.95);
+      margin-bottom: 0.25rem;
+      font-weight: 600;
+    }
+
+    .project-swiper .project-title {
+      margin: 0;
+      font-size: var(--font-lg);
+      line-height: 1.1;
+      color: #ffffff;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    }
+
+    /* Template-style tweaks for project swiper + hover opacity trick */
+    .project-swiper {
+      /* keep existing stacking but add a soft background for controls area */
+      --proj-ctrl-bg: rgba(255,255,255,0.96);
+    }
+
+    /* when hovering the whole swiper, mute all slides slightly so hovered one pops */
+    .project-swiper:hover .swiper-slide {
+      opacity: 0.58;
+      transition: opacity 220ms ease, transform 220ms ease;
+    }
+
+    /* hovered slide becomes fully opaque and lifts slightly */
+    .project-swiper .swiper-slide:hover {
+      opacity: 1 !important;
+      transform: translateY(-8px) scale(1.02) !important;
+      box-shadow: 0 20px 48px rgba(0,0,0,0.22) !important;
+      z-index: 240 !important;
+    }
+
+    /* ensure the active slide remains visible when not hovering */
+    .project-swiper .swiper-slide.swiper-slide-active {
+      opacity: 1;
+      transform: scale(1);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.18);
+    }
+
+    /* style the compact navigation to match template and use FA icons */
+    .project-swiper .project-swiper-navigation-container {
+      background: var(--proj-ctrl-bg);
+      border-radius: 2px;
+      display: inline-flex;
+      gap: 0.5rem;
+      padding: 0.35rem 0.45rem;
+      align-items: center;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .project-swiper .project-swiper-navigation-container button {
+      appearance: none;
+      -webkit-appearance: none;
+      border: none;
+      background: transparent;
+      width: 44px;
+      height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--accent-color);
+      font-size: 1.05rem;
+      transition: background-color 160ms ease, color 160ms ease, transform 140ms ease;
+      border-radius: 6px;
+    }
+
+    .project-swiper .project-swiper-navigation-container button i {
+      pointer-events: none; /* icon shouldn't intercept click */
+    }
+
+    .project-swiper .project-swiper-navigation-container button:hover {
+      color: var(--primary-color);
+      background: rgba(0,0,0,0.03);
+    }
+
+    .project-swiper .project-swiper-navigation-container button:focus {
+      outline-offset: 2px;
+    }
+
+    /* mobile adjustments: reduce height and scale for slides */
+    @media (max-width: 768px) {
+      .project-swiper .swiper-slide {
+        height: 340px;
+      }
+      .project-swiper .project-swiper-navigation-container button {
+        width: 40px;
+        height: 36px;
+        font-size: 0.95rem;
+      }
+      .project-swiper:hover .swiper-slide { opacity: 1; } /* avoid muting on touch devices */
+    }
+
+.about-keith {
+  padding: 5rem 2rem;
+  background: var(--secondary-color);
+}
+
+.keith-container {
+  display: flex;
+  gap: 6rem;
+  align-items: center;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.keith-image {
+  flex: 1;
+  min-width: 300px;
+}
+
+.keith-image img {
+  width: 100%;
+  border-radius: 2px;
+  object-fit: cover;
+  max-height: 500px;
+}
+
+.keith-content {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+
+.keith-content p {
+  font-size: var(--font-md);
+  color: var(--text-color);
+}
+
+
+.testimonial-section {
+  background: var(--accent-color) url('./images/cartographer.png') center/cover no-repeat;
+  color: white;
+  padding: 5rem 2rem;
+}
+
+.testimonial-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.testimonial-swiper {
+  text-align: center;
+}
+
+.testimonial-swiper blockquote {
+  font-style: italic;
+  font-size: var(--font-lg);
+  line-height: 1.6;
+  padding: 1rem 2rem;
+}
+
+.testimonial-swiper cite {
+  display: block;
+  margin-top: 1rem;
+  font-style: normal;
+  font-weight: bold;
+  color: white;
+  font-size: var(--font-md);
+}
+
+/* Remove pagination bullets */
+.testimonial-swiper .swiper-pagination {
+  display: none;
+}
+
+.swiper-pagination-bullet {
+  background: white;
+  opacity: 0.6;
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--primary-color);
+  opacity: 1;
+}
+
+
+  </style>
+</head>
+<body>
+<div class="header-container">
+  <div class="header-inner">
+    <div class="logo-block">
+      <div class="logo"><strong>Keiths LOGO</strong></div>
+    </div>
+    <div class="right-block">
+        <div class="top-bar" id="topBar">
+        <div class="contact-item"><i class="fas fa-phone"></i> <strong>Call us</strong> (555) 123-4567</div>
+        <div class="contact-item"><i class="fas fa-envelope"></i> <strong>Email</strong> hello@trimco.com</div>
+        <div class="contact-item"><i class="fas fa-map-marker-alt"></i> <strong>Kansas City</strong></div>
+    </div>
+      <div class="main-nav">
+        <nav>
+            <div class="nav-wrapper" id="navWrapper">
+                <ul id="navList">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Projects</a></li>
+                <li><a href="#">Contact</a></li>
+                <li class="mobile-contact" id="mobileContact">
+                  <div class="contact-item"><i class="fas fa-phone"></i> <strong>Call us</strong> (555) 123-4567</div>
+                  <div class="contact-item"><i class="fas fa-envelope"></i> <strong>Email</strong> hello@trimco.com</div>
+                  <div class="contact-item"><i class="fas fa-map-marker-alt"></i> <strong>Kansas City</strong></div>
+                </li>
+                </ul>                
+            </div>
+        </nav>
+
+        <button class="nav-cta">Contact Us</button>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+        </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+  <section class="hero">
+    <div class="hero-left">
+      <div class="subtitle">Trim Work Carpentry</div>
+      <h1>Designed with precision. Built to elevate every space.</h1>
+      <p>Crafted woodwork that brings elegance and longevity to your home.</p>
+      <div class="hero-buttons">
+        <button class="btn btn-primary">Get in Touch</button>
+<button class="btn btn-secondary">Our Projects</button>
+
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><img src="./images/test1-1.jpg" alt="Project 1"></div>
+          <div class="swiper-slide"><img src="./images/trim-project-14-1.png" alt="Project 2"></div>
+          <div class="swiper-slide"><img src="./images/trim-project-41-1.png" alt="Project 3"></div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-navigation-container">
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section class="services">
+  <div class="services-header">
+    <div class="subtitle">Our Expertise</div>
+    <h2>Professional Carpentry & Contracting Services</h2>
+    <p>Explore the services we offer to enhance and personalize your space with detail-rich craftsmanship and reliable performance.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card" style="--bg-image: url('./images/trim-project-10.png');">
+      <i class="fas fa-paint-roller"></i>
+      <h3>Interior Trim Work</h3>
+      <p>From baseboards to crown moulding, our expert trim work brings clean, elegant detail to every room, elevating the overall character of your space.</p>
+    </div>
+    <div class="service-card" style="--bg-image: url('./images/trim-project-14.png');">
+      <i class="fas fa-door-closed"></i>
+      <h3>Door & Casing Installation</h3>
+      <p>We install interior and exterior doors with precision, ensuring the surrounding casing integrates perfectly into the design of your home or project.</p>
+    </div>
+    <div class="service-card" style="--bg-image: url('./images/trim-project-41.png');">
+      <i class="fas fa-columns"></i>
+      <h3>Custom Built-ins</h3>
+      <p>Custom built-ins such as shelving, mantels, benches, and cabinetry are crafted to meet your unique storage needs while enhancing aesthetics.</p>
+    </div>
+    <div class="service-card" style="--bg-image: url('./images/trim-project-41.png');">
+      <i class="fas fa-ruler-combined"></i>
+      <h3>Finish Carpentry</h3>
+      <p>We finalize your space with detailed finish carpentry, delivering seamless transitions, durable edges, and polished visual cohesion throughout.</p>
+    </div>
+  </div>
+  <div class="services-cta">
+    <button class="btn btn-primary" id="getQuoteBtn">Get a Quote</button>
+  </div>
+</section>
+
+<section class="about-section">
+  <div class="about-overlay">
+    <div class="about-content">
+      <h2>Why Choose Us?</h2>
+      <p>With a commitment to craftsmanship and customer satisfaction, we stand behind every cut, joint, and finish.</p>
+      
+      <div class="about-features">
+        <div class="feature-box">
+          <i class="fas fa-shield-alt"></i>
+          <h4>Fully Insured</h4>
+          <p>We carry full insurance so you can have complete peace of mind on every job.</p>
+        </div>
+        <div class="feature-box">
+          <i class="fas fa-thumbs-up"></i>
+          <h4>100% Satisfaction</h4>
+          <p>Your satisfaction is our priority. We’re not done until you love the result.</p>
+        </div>
+        <div class="feature-box">
+          <i class="fas fa-hand-holding-usd"></i>
+          <h4>Fair Pricing</h4>
+          <p>We offer transparent, competitive pricing with no surprises or hidden fees.</p>
+        </div>
+        <div class="feature-box">
+          <i class="fas fa-users"></i>
+          <h4>Family Owned</h4>
+          <p>Built on values of trust, quality, and hard work passed down through generations.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="projects-section">
+  <div class="services-header">
+    <div class="subtitle">High Quality Craftsmanship</div>
+    <h2>Some of Our Projects</h2>
+    <p>Take a look at our recent work—each project reflects our dedication to precision, quality materials, and timeless craftsmanship built to elevate your space.</p>
+  </div>
+  <div class="swiper project-swiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <img src="./images/trim-project-43.png" alt="Kitchen trim and built-ins" />
+        <div class="slide-overlay">
+          <div class="slide-meta">
+            <span class="project-type">Interior</span>
+            <h3 class="project-title">Kitchen Trim & Built-ins</h3>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="./images/trim-project-64.png" alt="Custom shelving project" />
+        <div class="slide-overlay">
+          <div class="slide-meta">
+            <span class="project-type">Custom</span>
+            <h3 class="project-title">Custom Shelving & Mantel</h3>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="./images/trim-project-8.png" alt="Exterior porch trim" />
+        <div class="slide-overlay">
+          <div class="slide-meta">
+            <span class="project-type">Exterior</span>
+            <h3 class="project-title">Porch Column & Trim Restoration</h3>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="./images/trim-project-23.png" alt="Exterior porch trim" />
+        <div class="slide-overlay">
+          <div class="slide-meta">
+            <span class="project-type">Exterior</span>
+            <h3 class="project-title">Porch Column & Trim Restoration</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="project-navigation">
+      <div class="project-swiper-navigation-container">
+        <button class="project-button-prev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+        <button class="project-button-next" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about-keith">
+  <div class="keith-container">
+    <div class="keith-image">
+      <img src="./images/keith-placeholder.png" alt="Keith the Owner">
+    </div>
+    <div class="keith-content">
+    <div class="services-header">
+        <div class="subtitle">Meet the Owner</div>
+        <h2>Keith — Crafting Homes with Over 20 Years of Experience</h2>
+    </div>
+      <p>
+        With a passion for detail and a commitment to quality, Keith has spent over two decades perfecting the art of trim carpentry. From custom crown molding to full-scale interior woodwork, he brings expertise, integrity, and hands-on leadership to every project.
+      </p>
+      <button class="btn btn-primary" style="max-width: 200px;margin-top: 20px;">Learn More</button>
+    </div>
+  </div>
+</section>
+
+<section class="testimonial-section">
+  <div class="testimonial-wrapper">
+    <div class="swiper testimonial-swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <blockquote>
+            <p>“Keith’s attention to detail is unmatched. The trim work completely transformed our home.”</p>
+            <cite>— Sarah M.</cite>
+          </blockquote>
+        </div>
+        <div class="swiper-slide">
+          <blockquote>
+            <p>“Reliable, skilled, and professional from start to finish. Highly recommend!”</p>
+            <cite>— Daniel K.</cite>
+          </blockquote>
+        </div>
+        <div class="swiper-slide">
+          <blockquote>
+            <p>“Top-tier craftsmanship and great communication throughout the whole process.”</p>
+            <cite>— Lisa R.</cite>
+          </blockquote>
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery-section">
+    <div class="services-header">
+    <div class="subtitle">Craftsmanship in Every Detail</div>
+    <h2>Project Gallery</h2>
+    <p>Browse a few of our standout projects showcasing precision, style, and timeless carpentry work.</p>
+  </div>
+  <div class="gallery-grid">
+    <img src="./images/trim-project-1.png" alt="Project 1">
+    <img src="./images/trim-project-2.png" alt="Project 2">
+    <img src="./images/trim-project-3.png" alt="Project 3">
+    <img src="./images/trim-project-4.png" alt="Project 4">
+    <img src="./images/trim-project-5.png" alt="Project 5">
+    <img src="./images/trim-project-6.png" alt="Project 6">
+    <img src="./images/trim-project-7.png" alt="Project 7">
+    <img src="./images/trim-project-8.png" alt="Project 8">
+  </div>
+  <div class="gallery-button">
+    <button href="#" class="btn btn-secondary">See Full Gallery</button>
+  </div>
+</section>
+
+
+
+<style>
+.gallery-section {
+  padding: 4rem 2rem;
+  background-color: #fff8f0;
+  text-align: center;
+}
+
+.gallery-header .subtitle {
+  font-size: var(--font-sm);
+  color: var(--accent-color);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.gallery-header h2 {
+  font-size: var(--font-xxl);
+  margin-bottom: 1rem;
+}
+
+.gallery-header p {
+  font-size: var(--font-md);
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.gallery-button .btn {
+  padding: 0.75rem 2rem;
+}
+</style>
+
+  <!-- Contact Section -->
+  <section class="contact-section">
+    <div class="contact-left">
+      <h2>Get in Touch</h2>
+      <p>Have a project in mind or just want to ask a question? Reach out and let's bring your vision to life.</p>
+    </div>
+    <div class="contact-right">
+      <form class="contact-form">
+        <div class="form-group">
+          <input type="text" placeholder="First Name" required>
+          <input type="text" placeholder="Last Name" required>
+        </div>
+        <input type="email" placeholder="Email" required>
+        <input type="text" placeholder="Subject" required>
+        <textarea placeholder="Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <style>
+    .contact-section {
+      display: flex;
+      flex-wrap: wrap;
+      background: var(--primary-color);
+      color: var(--text-color);
+      min-height: 600px;
+    }
+
+    .contact-left, .contact-right {
+      flex: 1;
+      min-width: 300px;
+      padding: 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .contact-left {
+      color: white;
+    }
+
+    .contact-left h2 {
+      font-size: var(--font-xxl);
+      margin-bottom: 1rem;
+    }
+
+    .contact-left p {
+      font-size: var(--font-md);
+      max-width: 400px;
+    }
+
+    .contact-image {
+      margin-top: 2rem;
+      max-width: 300px;
+    }
+
+    .contact-form {
+      background: white;
+      padding: 2rem;
+      border-radius: 2px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 0.75rem;
+      font-size: var(--font-base);
+      border: 1px solid #ccc;
+      border-radius: 2px;
+    }
+
+    .contact-form textarea {
+      height: 120px;
+      resize: vertical;
+    }
+
+    .form-group {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .form-group input {
+      flex: 1;
+    }
+
+    .contact-form button {
+      background: var(--primary-color);
+      color: white;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: var(--font-md);
+    }
+
+    .contact-form button:hover {
+      background: var(--accent-color);
+    }
+
+    @media (max-width: 768px) {
+      .contact-section {
+        flex-direction: column;
+      }
+      .contact-left, .contact-right {
+        padding: 2rem;
+      }
+      .form-group {
+        flex-direction: column;
+      }
+    }
+  </style>
+
+<section class="faq-section">
+  <div class="faq-container">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <button class="faq-question">What types of trim carpentry do you offer?</button>
+      <div class="faq-answer">
+        <p>We specialize in crown molding, baseboards, wainscoting, coffered ceilings, door casings, and custom woodwork to elevate your interiors.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Are you licensed and insured?</button>
+      <div class="faq-answer">
+        <p>Yes, we are fully licensed and insured for all residential and commercial trim carpentry projects in the Kansas City area.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">How long does a typical project take?</button>
+      <div class="faq-answer">
+        <p>Timelines vary, but most standard trim carpentry jobs are completed within 3–5 days depending on complexity and scope.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Do you provide free estimates?</button>
+      <div class="faq-answer">
+        <p>Absolutely! We’re happy to discuss your project and provide a detailed, no-obligation quote tailored to your needs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.faq-section {
+  background: var(--bg-color);
+  padding: 5rem 2rem;
+}
+
+.faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-container h2 {
+  font-size: var(--font-xxl);
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.faq-item {
+  background: var(--secondary-color);
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.10);
+  transition: box-shadow 0.3s ease;
+}
+
+.faq-item:hover {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.faq-question {
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  padding: 1.25rem 1.5rem;
+  font-size: var(--font-md);
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--accent-color);
+  position: relative;
+}
+
+.faq-question::after {
+  content: '+';
+  position: absolute;
+  right: 1.5rem;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+
+.faq-question.active::after {
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  padding: 0 1.5rem;
+}
+
+.faq-answer p {
+  padding: 1rem 0 1.5rem;
+  font-size: var(--font-base);
+  color: var(--text-color);
+}
+</style>
+
+<script>
+  const faqButtons = document.querySelectorAll(".faq-question");
+  faqButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const answer = button.nextElementSibling;
+      const isOpen = button.classList.contains("active");
+      faqButtons.forEach(btn => {
+        btn.classList.remove("active");
+        btn.nextElementSibling.style.maxHeight = null;
+      });
+      if (!isOpen) {
+        button.classList.add("active");
+        answer.style.maxHeight = answer.scrollHeight + "px";
+      }
+    });
+  });
+</script>
+
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-column">
+      <div class="footer-logo">
+        <strong>Keith’s Logo</strong>
+      </div>
+      <p style="margin-top: 0.5rem;">
+        Trim work & carpentry with over 20 years of excellence. Family owned, proudly serving Kansas City.
+      </p>
+    </div>
+
+    <div class="footer-column">
+      <h4>Links</h4>
+      <ul class="footer-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Projects</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>Contact</h4>
+      <ul class="footer-contact">
+        <li><i class="fas fa-map-marker-alt"></i> Kansas City</li>
+        <li><i class="fas fa-phone"></i> (555) 123-4567</li>
+        <li><i class="fas fa-envelope"></i> hello@trimco.com</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025 Keith’s Company. All rights reserved.</p>
+  </div>
+</footer>
+
+<style>
+.site-footer {
+  border-top: 4px solid var(--primary-color);
+  background-color: var(--bg-color);
+  padding: 3rem 2rem 2rem;
+  font-size: var(--font-sm);
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-between;
+}
+
+.footer-column {
+  flex: 1 1 250px;
+  min-width: 220px;
+}
+
+.footer-logo {
+  font-size: var(--font-lg);
+  font-weight: 700;
+  color: var(--accent-color);
+}
+
+.footer-links,
+.footer-contact {
+  list-style: none;
+  padding: 0;
+  margin-top: 0.5rem;
+}
+
+.footer-links li,
+.footer-contact li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: var(--accent-color);
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--primary-color);
+}
+
+.footer-contact i {
+  margin-right: 0.5rem;
+  color: var(--primary-color);
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 2rem;
+  color: var(--text-color);
+  font-size: var(--font-xs);
+}
+</style>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    // limit autoplay to the hero swiper only so the base-template sliders won't auto-advance
+    const heroSwiper = new Swiper('.hero .swiper', {
+      loop: true,
+      autoplay: {
+        delay: 4000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+  </script>
+    <script>
+    const topBar = document.querySelector('.top-bar');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY === 0) {
+        topBar.classList.remove('hidden');
+        } else {
+        topBar.classList.add('hidden');
+        }
+    });
+    </script>
+
+<script>
+const hamburger = document.getElementById('hamburger');
+const navWrapper = document.getElementById('navWrapper');
+const navList = document.getElementById('navList');
+
+hamburger.addEventListener('click', () => {
+  navWrapper.classList.toggle('show');
+  navList.classList.toggle('show');
+});
+
+</script>
+
+<script>
+new Swiper(".project-swiper", {
+  loop: false,
+  initialSlide: 0,
+  centeredSlides: true,
+  slidesPerView: "auto",
+  spaceBetween: 30,
+  navigation: {
+    nextEl: ".project-button-next",
+    prevEl: ".project-button-prev"
+  }
+});
+
+</script>
+
+<script>
+const testimonialSwiper = new Swiper('.testimonial-swiper', {
+  loop: true,
+  autoplay: {
+    delay: 6000,
+    disableOnInteraction: false,
+  }
+});
+</script>
+
+
+
+</body>
+</html>
