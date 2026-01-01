@@ -36,7 +36,7 @@
     }
 
     html, body {
-      height: 100%;
+      height: auto;
     }
 
     body {
@@ -50,7 +50,7 @@
   box-shadow: 0 2px 5px rgba(0,0,0,0.05);
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
 }
 
 .header-inner {
@@ -316,6 +316,7 @@
     @media (max-width: 768px) {
     .hero {
         flex-direction: column;
+        height: auto;
     }
 
     .hero-left,
@@ -325,6 +326,19 @@
         width: 100%;
         padding: 2rem;
     }
+
+  .hero-right {
+    width: 100vw;        /* stretch to full viewport width */
+    height: 50vh;        /* adjust as needed (e.g., 50% of viewport height) */
+    padding: 0;
+    margin-left: calc((100% - 100vw) / 2); /* centers it if parent has padding */
+  }
+
+  /* Ensure the Swiper inside fills the container */
+  .hero-right .swiper {
+    width: 100%;
+    height: 100%;
+  }
 
     .hero-buttons {
         flex-direction: column;
@@ -408,6 +422,8 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    padding: 0;
+    box-shadow: none;
     }
   .nav-wrapper.show .mobile-contact {
     display: flex;
@@ -601,7 +617,7 @@
     color: var(--primary-color);
     background: white;
     padding: 20px;
-    border-radius: 2px;
+    border-radius: 50%;
 }
 
 .feature-box h4 {
@@ -617,7 +633,7 @@
 .projects-section {
   padding: 4rem 2rem;
   text-align: center;
-  background-color: var(--bg-color);
+  background-color: var(--secondary-color);
 }
 
 .project-swiper {
@@ -684,23 +700,47 @@
 }
 
 /* Slide caption overlay: subtle black gradient and text at the bottom */
-.project-swiper .slide-overlay {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      padding: 1rem 1.25rem;
-      display: flex;
-      align-items: flex-end;
-      color: #ffffff;
-      z-index: 240; /* sit above the image and active slide z-index */
-      background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.25) 40%, rgba(0,0,0,0.6) 100%);
-      pointer-events: none; /* let clicks pass through to the slide unless specific elements need interaction */
-    }
+  .project-swiper .slide-overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: flex-end;
+    color: #ffffff;
+    z-index: 240; /* sit above the image and active slide z-index */
+
+    /* light-brown overlay for readability */
+    background: linear-gradient(
+    180deg,
+    rgba(255, 248, 240, 0) 0%,
+    rgba(160, 82, 45, 0.48) 20%,
+    rgba(160, 82, 45, 0.78) 100%
+  );
+
+    pointer-events: none; 
+    transition: padding 220ms ease, background 220ms ease;
+  }
+
+/* Hover: deepen the bottom overlay so captions read even better */
+.project-swiper .swiper-slide:hover .slide-overlay {
+  padding: 1.15rem 1.25rem;
+  /*background: linear-gradient(
+    180deg,
+    rgba(255, 248, 240, 0) 0%,
+    rgba(160, 82, 45, 0.28) 30%,
+    rgba(160, 82, 45, 0.78) 100%
+  );*/
+  transition: transform 220ms ease, opacity 220ms ease;
+}
 
     .project-swiper .slide-meta {
       pointer-events: auto;
       text-align: left;
+      transform: translateY(0);
+      transition: transform 220ms ease, opacity 220ms ease;
+      opacity: 0.96;
     }
 
     .project-swiper .project-type {
@@ -720,6 +760,29 @@
       line-height: 1.1;
       color: #ffffff;
       text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    }
+
+    /* Hover: make caption feel more interactive */
+    .project-swiper .swiper-slide:hover .slide-meta {
+      transform: translateY(-6px);
+      opacity: 1;
+    }
+
+    .project-swiper .swiper-slide:hover .project-title {
+      transform: translateY(-1px);
+    }
+
+    .project-swiper .project-title {
+      transition: transform 220ms ease;
+    }
+
+    .project-swiper .project-type {
+      transition: transform 220ms ease, opacity 220ms ease;
+    }
+
+    .project-swiper .swiper-slide:hover .project-type {
+      transform: translateY(-2px);
+      opacity: 1;
     }
 
     /* Template-style tweaks for project swiper + hover opacity trick */
@@ -844,40 +907,208 @@
 }
 
 
+/* Testimonials (split layout like reference, keep existing background color) */
 .testimonial-section {
   background: var(--accent-color) url('./images/cartographer.png') center/cover no-repeat;
-  color: white;
+  color: #fff;
   padding: 5rem 2rem;
 }
 
-.testimonial-wrapper {
-  max-width: 800px;
+.testimonial-inner {
+  max-width: 1200px;
   margin: 0 auto;
+  display: flex;
+  gap: 3rem;
+  align-items: stretch;
 }
 
-.testimonial-swiper {
-  text-align: center;
+.testimonial-left,
+.testimonial-right {
+  flex: 1;
+  min-width: 320px;
 }
 
-.testimonial-swiper blockquote {
-  font-style: italic;
+.testimonial-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem 0;
+}
+
+.testimonial-left h2 {
+  font-size: var(--font-xxl);
+  line-height: 1.05;
+  font-weight: 700;
+  margin: 0 0 1rem;
+}
+
+.testimonial-left h2 span {
+  opacity: 0.65;
+  font-weight: 700;
+}
+
+.testimonial-seo {
+  max-width: 520px;
+  font-size: var(--font-base);
+  line-height: 1.5;
+  opacity: 0.9;
+  margin: 0 0 1.5rem;
+}
+
+.testimonial-cta {
+  align-self: flex-start;
+  padding: 0.85rem 1.25rem;
+  font-size: var(--font-sm);
+  max-width: 260px;
+}
+
+.testimonial-right {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 1.5rem 0;
+}
+
+.testimonial-right .testimonial-swiper {
+  width: 100%;
+}
+
+/* Ensure each testimonial slide is a flex container */
+.testimonial-right .swiper-slide {
+  display: flex;
+}
+
+/* Make the quote card fill the slide and arrange content vertically */
+.quote-card {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.quote-text {
+  margin: 0;
   font-size: var(--font-lg);
-  line-height: 1.6;
-  padding: 1rem 2rem;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.96);
+  max-width: 700px;
 }
 
-.testimonial-swiper cite {
-  display: block;
-  margin-top: 1rem;
-  font-style: normal;
-  font-weight: bold;
-  color: white;
-  font-size: var(--font-md);
+/* golden quote icons */
+.quote-icon {
+  color: #d7b46a; /* warm gold */
+  font-size: 1.25em;
+  vertical-align: -0.15em;
 }
 
-/* Remove pagination bullets */
-.testimonial-swiper .swiper-pagination {
+.quote-icon--start {
+  margin-right: 0.4rem;
+}
+
+.quote-icon--end {
+  margin-left: 0.4rem;
+  /* Prevent this icon from separating from the preceding word */
+  white-space: nowrap;
+}
+
+.quote-meta {
+  margin-top: auto;
+}
+
+.quote-name {
+  font-size: var(--font-sm);
+  font-weight: 700;
+}
+
+.quote-title {
+  font-size: var(--font-xs);
+  opacity: 0.75;
+  margin-top: 0.15rem;
+}
+
+.quote-tail { white-space: nowrap; }
+
+/* testimonial nav styled like the project swiper controls */
+.testimonial-navigation {
+  position: absolute;
+  right: 0;
+  bottom: 1.5em;
+  /* bring above the swiper content so entire button area is clickable */
+  z-index: 20;
+}
+
+.testimonial-swiper-navigation-container {
+  background: rgba(255,255,255,0.96);
+  border-radius: 2px;
+  display: inline-flex;
+  gap: 0.5rem;
+  padding: 0.35rem 0.45rem;
+  align-items: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  border: 1px solid rgba(0,0,0,0.04);
+}
+
+.testimonial-swiper-navigation-container button {
+  appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  background: transparent;
+  width: 44px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--accent-color);
+  font-size: 1.05rem;
+  transition: background-color 160ms ease, color 160ms ease, transform 140ms ease;
+  border-radius: 6px;
+}
+
+.testimonial-swiper-navigation-container button i {
+  pointer-events: none;
+}
+
+.testimonial-swiper-navigation-container button:hover {
+  color: var(--primary-color);
+  background: rgba(0,0,0,0.03);
+}
+
+@media (max-width: 900px) {
+  .testimonial-navigation {
+    position: static;
+    margin-top: 1.25rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+/* Remove swiper pagination bullets for testimonials */
+.testimonial-section .swiper-pagination {
   display: none;
+}
+
+@media (max-width: 900px) {
+  .testimonial-inner {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .testimonial-left {
+    padding: 0;
+  }
+
+  .testimonial-right {
+    padding: 0;
+    flex-direction: column;
+  }
+
+  .testimonial-navigation {
+    position: static;
+    margin-top: 1.25rem;
+    justify-content: flex-start;
+  }
 }
 
 .swiper-pagination-bullet {
@@ -1099,31 +1330,66 @@
   </div>
 </section>
 
-<section class="testimonial-section">
-  <div class="testimonial-wrapper">
-    <div class="swiper testimonial-swiper">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <blockquote>
-            <p>“Keith’s attention to detail is unmatched. The trim work completely transformed our home.”</p>
-            <cite>— Sarah M.</cite>
-          </blockquote>
-        </div>
-        <div class="swiper-slide">
-          <blockquote>
-            <p>“Reliable, skilled, and professional from start to finish. Highly recommend!”</p>
-            <cite>— Daniel K.</cite>
-          </blockquote>
-        </div>
-        <div class="swiper-slide">
-          <blockquote>
-            <p>“Top-tier craftsmanship and great communication throughout the whole process.”</p>
-            <cite>— Lisa R.</cite>
-          </blockquote>
+<section class="testimonial-section" aria-labelledby="testimonials-title">
+  <div class="testimonial-inner">
+
+    <div class="testimonial-left">
+      <h2 id="testimonials-title">Trusted by<br><span>Kansas City</span><br>Homeowners</h2>
+      <p class="testimonial-seo">See what real clients say about our craftsmanship, communication, and attention to detail—so you can feel confident before you hire.</p>
+      <button class="btn btn-primary testimonial-cta">Read Customer Stories</button>
+    </div>
+
+    <div class="testimonial-right">
+      <div class="swiper testimonial-swiper">
+        <div class="swiper-wrapper">
+
+          <div class="swiper-slide">
+            <div class="quote-card">
+              <p class="quote-text">
+                <i class="fa-solid fa-quote-left quote-icon quote-icon--start" aria-hidden="true"></i>Keith’s attention to detail is unmatched. The trim work completely transformed our <span class="quote-tail">home.<i class="fa-solid fa-quote-right quote-icon quote-icon--end" aria-hidden="true"></i></span>
+              </p>
+              <div class="quote-meta">
+                <div class="quote-name">Sarah M.</div>
+                <div class="quote-title">Homeowner</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="quote-card">
+              <p class="quote-text">
+                <i class="fa-solid fa-quote-left quote-icon quote-icon--start" aria-hidden="true"></i>Reliable, skilled, and professional from start to finish. Highly <span class="quote-tail">recommend!<i class="fa-solid fa-quote-right quote-icon quote-icon--end" aria-hidden="true"></i></span>
+              </p>
+              <div class="quote-meta">
+                <div class="quote-name">Daniel K.</div>
+                <div class="quote-title">Client</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="quote-card">
+              <p class="quote-text">
+                <i class="fa-solid fa-quote-left quote-icon quote-icon--start" aria-hidden="true"></i>Top-tier craftsmanship and great communication throughout the whole <span class="quote-tail">process.<i class="fa-solid fa-quote-right quote-icon quote-icon--end" aria-hidden="true"></i></span>
+              </p>
+              <div class="quote-meta">
+                <div class="quote-name">Lisa R.</div>
+                <div class="quote-title">Client</div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
-      <div class="swiper-pagination"></div>
+
+      <div class="testimonial-navigation" aria-label="Testimonial navigation">
+        <div class="testimonial-swiper-navigation-container">
+          <button class="testimonial-prev" type="button" aria-label="Previous testimonial"><i class="fas fa-chevron-left"></i></button>
+          <button class="testimonial-next" type="button" aria-label="Next testimonial"><i class="fas fa-chevron-right"></i></button>
+        </div>
+      </div>
     </div>
+
   </div>
 </section>
 
@@ -1177,22 +1443,39 @@
   margin: 0 auto 2rem;
 }
 
+/* Base gallery: 4 items per row */
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 250px;         /* consistent height */
   gap: 1rem;
   max-width: 1200px;
-  margin: 0 auto;
-  margin-bottom: 2rem;
+  margin: 0 auto 2rem;
 }
 
 .gallery-grid img {
   width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
+  height: 100%;
+  object-fit: cover;             /* crop to fill */
   border-radius: 4px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* Tablet: 2 items per row */
+@media (max-width: 1024px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile: 1 item per row, show only first 3 images */
+@media (max-width: 600px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+  .gallery-grid img:nth-child(n+4) {
+    display: none;
+  }
 }
 
 .gallery-button .btn {
@@ -1203,8 +1486,13 @@
   <!-- Contact Section -->
   <section class="contact-section">
     <div class="contact-left">
-      <h2>Get in Touch</h2>
-      <p>Have a project in mind or just want to ask a question? Reach out and let's bring your vision to life.</p>
+      <h2>
+        Let’s get started
+      </h2>
+      <p>
+    From crown moulding and built‑ins to custom doors, our family‑owned team delivers precision and personal care. 
+    Contact us today for a free quote and let’s craft your dream space.
+    </p>
     </div>
     <div class="contact-right">
       <form class="contact-form">
@@ -1245,6 +1533,11 @@
     .contact-left h2 {
       font-size: var(--font-xxl);
       margin-bottom: 1rem;
+    }
+
+    .contact-left h2 span {
+      opacity: 0.65;
+      font-weight: 700;
     }
 
     .contact-left p {
@@ -1598,11 +1891,15 @@ new Swiper(".project-swiper", {
 </script>
 
 <script>
-const testimonialSwiper = new Swiper('.testimonial-swiper', {
+const testimonialSwiper = new Swiper('.testimonial-section .testimonial-swiper', {
   loop: true,
   autoplay: {
     delay: 6000,
     disableOnInteraction: false,
+  },
+  navigation: {
+    nextEl: '.testimonial-next',
+    prevEl: '.testimonial-prev'
   }
 });
 </script>
